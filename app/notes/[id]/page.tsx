@@ -9,7 +9,7 @@ import { fetchNoteById } from "@/lib/api";
 type Props = { params: { id: string } };
 
 export default async function NoteDetails({ params }: Props) {
-  const { id } = params; // без await
+  const { id } = params;
 
   const queryClient = new QueryClient();
 

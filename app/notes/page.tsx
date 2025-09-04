@@ -7,11 +7,16 @@ import NotesClient from "./Notes.client";
 import { fetchNotes, NotesResponse } from "@/lib/api";
 
 interface NotesPageProps {
-  searchParams?: { page?: string };
+  searchParams?: Record<string, string | string[] | undefined>;
 }
 
 export default async function NotesPage({ searchParams }: NotesPageProps) {
-  const page = Number(searchParams?.page) || 1;
+  const page =
+    Number(
+      Array.isArray(searchParams?.page)
+        ? searchParams?.page[0]
+        : searchParams?.page
+    ) || 1;
 
   const queryClient = new QueryClient();
 
@@ -24,7 +29,7 @@ export default async function NotesPage({ searchParams }: NotesPageProps) {
 
   return (
     <HydrationBoundary state={dehydratedState}>
-      <NotesClient />;
+      <NotesClient />
     </HydrationBoundary>
   );
 }
