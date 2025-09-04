@@ -6,10 +6,10 @@ import {
 import NoteDetailsClient from "./NoteDetails.client";
 import { fetchNoteById } from "@/lib/api";
 
-type Props = { params: Promise<{ id: string }> };
+type Props = { params: { id: string } };
 
 export default async function NoteDetails({ params }: Props) {
-  const { id } = await params;
+  const { id } = params; // без await
 
   const queryClient = new QueryClient();
 
