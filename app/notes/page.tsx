@@ -6,11 +6,12 @@ import {
 import NotesClient from "./Notes.client";
 import { fetchNotes, NotesResponse } from "@/lib/api";
 
-export default async function NotesPage({
-  searchParams,
-}: {
-  searchParams?: Record<string, string | string[] | undefined>;
-}) {
+export default async function NotesPage(
+  props: {
+    searchParams?: Promise<Record<string, string | string[] | undefined>>;
+  }
+) {
+  const searchParams = await props.searchParams;
   const page =
     Number(
       Array.isArray(searchParams?.page)
