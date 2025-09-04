@@ -6,11 +6,11 @@ import {
 import NotesClient from "./Notes.client";
 import { fetchNotes, NotesResponse } from "@/lib/api";
 
-interface NotesPageProps {
+export default async function NotesPage({
+  searchParams,
+}: {
   searchParams?: Record<string, string | string[] | undefined>;
-}
-
-export default async function NotesPage({ searchParams }: NotesPageProps) {
+}) {
   const page =
     Number(
       Array.isArray(searchParams?.page)
